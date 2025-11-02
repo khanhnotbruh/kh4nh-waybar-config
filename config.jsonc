@@ -1,0 +1,214 @@
+{
+  "layer": "top",
+  "position":"top",
+  "modules-left": [
+    "group/space",
+    "group/power"
+  ],
+  "modules-center": [
+    "hyprland/window",
+  ],
+  "modules-right": [ 
+    "group/hardware",
+    "group/time",
+  ],
+  "margin-top": 10,
+  "margin-left": 10,
+  "margin-right": 10,
+  "margin-bottom": 0,
+  "hyprland/window": {
+      "max-length": 50
+  },
+  
+  "group/time":{
+    "orientation":"horizontal",
+    "drawer":{
+      "transition-left-to-right":false,
+      "transition-duration":500,
+    },
+    "modules":[
+      "clock#time",
+      "clock#date"
+    ],
+  },
+  "group/power":{
+    "orientation":"horizontal",
+    "drawer":{
+      "transition-left-to-right":true,
+      "transition-duration":500,
+    },
+    "modules":[
+      "custom/shutdown",
+      "custom/reboot",
+      "custom/sleep",
+      "power-profiles-daemon"
+    ]
+  },
+  "group/space":{
+    "orientation":"horizontal",
+    "drawer":{
+      "transition-left-to-right":true,
+      "transition-duration":500,
+    },
+    "modules":[
+      "custom/space",
+      "hyprland/workspaces"
+    ],
+  },
+
+  "group/hardware": {
+    "orientation": "horizontal",
+    "length":40,
+    "drawer": {
+      "transition-duration": 500,
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "custom/hardware-toggle",
+      "network",
+      "cpu",
+      "memory",
+      "battery"
+    ]
+  },
+  "hyprland/window":{
+    "format":"    {}",
+    "tooltip":true,
+    "max-length":30
+  },
+  "custom/space":{
+    "format":"󰕰",
+    "tooltip":false
+  },
+  "custom/hardware-toggle": {
+    "format": "",
+    "tooltip": false,
+  },
+  "cpu": {
+    "on-scroll-up": "true",
+    "on-scroll-down": "true",
+    "format": "CPU: {usage}% {icon}",
+    "format-icons": [
+          "<span color='#69ff94'>▁</span>", // green
+          "<span color='#2aa9ff'>▂</span>", // blue
+          "<span color='#f8f8f2'>▃</span>", // white
+          "<span color='#f8f8f2'>▄</span>", // white
+          "<span color='#ffffa5'>▅</span>", // yellow
+          "<span color='#ffffa5'>▆</span>", // yellow
+          "<span color='#ff9977'>▇</span>", // orange
+          "<span color='#dd532e'>█</span>"  // red
+     ]  
+  },
+  "battery": {
+    "on-scroll-up": "true",
+    "on-scroll-down": "true",
+    "format": "{capacity}% {icon}",
+    "format-icons": [
+        "<span color='#dd532e'></span>",  // red
+        "<span color='#ff9977'></span>", // orange
+        "<span color='#ffffa5'></span>", // yellow
+        "<span color='#2aa9ff'></span>", // blue
+        "<span color='#69ff94'></span>" // green
+    ],    
+    "tooltip":false,
+  },
+  "memory": {
+    "on-scroll-up": "true",
+    "on-scroll-down": "true",
+    "format": "RAM: {percentage}% {icon}",    
+    "format-icons": [
+          "<span color='#69ff94'>▁</span>", // green
+          "<span color='#2aa9ff'>▂</span>", // blue
+          "<span color='#f8f8f2'>▃</span>", // white
+          "<span color='#f8f8f2'>▄</span>", // white
+          "<span color='#ffffa5'>▅</span>", // yellow
+          "<span color='#ffffa5'>▆</span>", // yellow
+          "<span color='#ff9977'>▇</span>", // orange
+          "<span color='#dd532e'>█</span>"  // red
+     ]  
+  },
+  "network": {
+    "on-scroll-up": "true",
+    "on-scroll-down": "true",
+    "interface": "wlp2s0b1",
+    "format-wifi": "{essid} : {signalStrength}% {icon}",
+    "format-ethernet": "{ipaddr}/{cidr}󰊗 ",
+    "format-disconnected": "Disconnected  ", 
+    "tooltip-format": "{ifname} via {gwaddr}󰊗 ",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "{ifname} ",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50,
+    "format-icons": [
+          "<span color='#dd532e'>▁</span>", // green
+          "<span color='#ff9977'>▂</span>", // blue
+          "<span color='#ffffa5'>▃</span>", // white
+          "<span color='#ffffa5'>▄</span>", // white
+          "<span color='#f8f8f2'>▅</span>", // yellow
+          "<span color='#f8f8f2'>▆</span>", // yellow
+          "<span color='#2aa9ff'>▇</span>", // orange
+          "<span color='#69ff94'>█</span>"  // red
+     ]  
+  },
+
+  
+  "clock#time": {
+    "tooltip":false,
+    "interval": 60,
+    "format": " {:%H:%M}",
+  },
+  "clock#date":{
+    "format":" {:%A, %B %d, %Y}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+      "calendar": {
+                  "mode"          : "month",
+                  "mode-mon-col"  : 3,
+                  "weeks-pos"     : "right",
+                  "on-scroll"     : 1,
+                  "format": {
+                            "months":     "<span color='#ffead3'><b>{}</b></span>",
+                            "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                            "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                            "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                            "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                            }
+                    },
+      "actions":  {
+                  "on-click-right": "mode",
+                  "on-scroll-up": "tz_up",
+                  "on-scroll-down": "tz_down",
+                  "on-scroll-up": "shift_up",
+                  "on-scroll-down": "shift_down"
+                  },
+  }, 
+
+  "custom/shutdown":{
+    "format": "  ",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/script/shutdown.sh",
+    "interval": 0
+  },
+  "custom/reboot":{
+    "format": "  ",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/script/reboot.sh",
+    "interval": 0
+  },
+  "custom/sleep":{
+    "format": " 󰒲 ",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/script/sleep.sh",
+    "interval": 0
+  },
+  "power-profiles-daemon": {
+    "format": " {icon} ",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    },
+  },
+}
