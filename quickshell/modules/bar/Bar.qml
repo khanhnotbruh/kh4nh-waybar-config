@@ -66,7 +66,7 @@ PanelWindow {
             contentWidth:Config.clockWidth
 
             drawerButton:Clock{}
-            drawerContent:Clock{}
+            drawerContent:Date{}
         }
     }
 }

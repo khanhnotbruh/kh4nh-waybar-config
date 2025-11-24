@@ -1,30 +1,12 @@
 import QtQuick
-import "../../../"
-Rectangle {
-    id:clock
-    width: Config.clockWidth 
-    height:Config.clockHeight
-    radius:Config.radiusAll
-    color: Config.background2Color
-    z:10
-    anchors{
-        top:parent.top
-        bottom:parent.bottom
-        margins:(parent.height-Config.clockHeight)/2
-    }
-    property var time: new Date()
 
-    Text {
-        id:clockText
-        anchors.centerIn: parent
-        text: parent.time.toLocaleTimeString(Qt.locale(), "hh:mm")
-        color:Config.textColor 
-        font.pixelSize: Config.clockTextSize
-        font.bold: true
+Text {
+    text: {
+        // Split the formatted string and pick the time part
+        const parts = Time.formatted.split(" ");
+        // Assuming format: Day Month Date HH:MM:SS Year
+        return parts[3];  
     }
-
-    Timer {
-        interval: 60000; running: true; repeat: true
-        onTriggered: parent.time = new Date()
-    }
+    font.pixelSize: 14
 }
+
