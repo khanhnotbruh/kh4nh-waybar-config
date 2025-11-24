@@ -154,6 +154,12 @@ _G.packer_plugins = {
     path = "/home/khanh/.local/share/nvim/site/pack/packer/start/nui.nvim",
     url = "https://github.com/MunifTanjim/nui.nvim"
   },
+  ["nvim-autopairs"] = {
+    config = { "\27LJ\2\ns\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\3\rcheck_ts\2\30enable_check_bracket_line\2\14map_enter\2\nsetup\19nvim-autopairs\frequire\0" },
+    loaded = true,
+    path = "/home/khanh/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/khanh/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -184,11 +190,6 @@ _G.packer_plugins = {
     path = "/home/khanh/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
-  playground = {
-    loaded = true,
-    path = "/home/khanh/.local/share/nvim/site/pack/packer/start/playground",
-    url = "https://github.com/nvim-treesitter/playground"
-  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/home/khanh/.local/share/nvim/site/pack/packer/start/plenary.nvim",
@@ -199,12 +200,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/khanh/.local/share/nvim/site/pack/packer/start/project.nvim",
     url = "https://github.com/ahmedkhalf/project.nvim"
-  },
-  ["scratchpad.nvim"] = {
-    config = { "\27LJ\2\n<\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\2\18\2\0\0009\0\2\0B\0\2\1K\0\1\0\nsetup\15scratchpad\frequire\0" },
-    loaded = true,
-    path = "/home/khanh/.local/share/nvim/site/pack/packer/start/scratchpad.nvim",
-    url = "https://github.com/athar-qadri/scratchpad.nvim"
   },
   ["snacks.nvim"] = {
     loaded = true,
@@ -239,14 +234,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: scratchpad.nvim
-time([[Config for scratchpad.nvim]], true)
-try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\2\18\2\0\0009\0\2\0B\0\2\1K\0\1\0\nsetup\15scratchpad\frequire\0", "config", "scratchpad.nvim")
-time([[Config for scratchpad.nvim]], false)
 -- Config for: project.nvim
 time([[Config for project.nvim]], true)
 try_loadstring("\27LJ\2\n¸\1\0\0\4\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\6\0=\3\a\2B\0\2\1K\0\1\0\rpatterns\1\4\0\0\t.git\17package.json\rMakefile\22detection_methods\1\0\2\22detection_methods\0\rpatterns\0\1\3\0\0\fpattern\blsp\nsetup\17project_nvim\frequire\0", "config", "project.nvim")
 time([[Config for project.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\ns\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\3\rcheck_ts\2\30enable_check_bracket_line\2\14map_enter\2\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

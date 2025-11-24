@@ -21,16 +21,32 @@ map("v","J",":m '>+1<CR>gv=gv")
 map("v","K",":m '>-2<CR>gv=gv")
 map("v", "<C-c>", ':%y+<CR>', { noremap = true, silent = true })
 map("x","<leader>p","\"_dP")
-
+function GoLeftOrWrap()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  local current_line_text = vim.api.nvim_get_current_line()
+  -- Is the cursor at col 0 or at the first non-whitespace?
+  local before_cursor = current_line_text:sub(1, col)
+  if col == 0 or before_cursor:match("^%s*$") then
+    -- Not top of buffer?
+    if line > 1 then
+      local prev_line_text = vim.api.nvim_buf_get_lines(0, line-2, line-1, false)[1]
+      vim.api.nvim_win_set_cursor(0, {line-1, #prev_line_text})
+    end
+  else
+    vim.cmd("normal! h")
+  end
+end
+map('n', 'h', GoLeftOrWrap, { noremap = true, silent = true })
+map('n', '<Left>', GoLeftOrWrap, { noremap = true, silent = true })
 -----------------------------------------------------
--- Buffer navigation
+-- Buffer navigation buffer :a
 -----------------------------------------------------
-map("n", "<leader>zh", ":bprevious<CR>", { noremap = true, silent = true })
-map("n", "<leader>zl", ":bnext<CR>", { noremap = true, silent = true })
-map("n", "<leader>zd", ":bdelete<CR>", { noremap = true, silent = true })
-map("n", "<leader>zp", "<C-w>p", { silent = true })
+map("n", "<leader>ah", ":bprevious<CR>", { noremap = true, silent = true })
+map("n", "<leader>al", ":bnext<CR>", { noremap = true, silent = true })
+map("n", "<leader>ad", ":bdelete<CR>", { noremap = true, silent = true })
+map("n", "<leader>ap", "<C-w>p", { silent = true })
 -----------------------------------------------------
---err log
+--err log key:l
 -----------------------------------------------------
 map("n", "<leader>lo", function()
   vim.diagnostic.setloclist()
@@ -41,7 +57,7 @@ map("n","<leader>lc", function ()
     vim.cmd("lclose")
 end, { noremap = true, silent = true })
 -----------------------------------------------------------------
---terminal
+--terminal key:`
 -----------------------------------------------------------------
 -- Open terminal in horizontal split
 map("n", "<leader>`oh", ":split | terminal<CR>", { noremap = true, silent = true })
@@ -51,7 +67,7 @@ map("n", "<leader>`ov", ":vsplit | terminal<CR>", { noremap = true, silent = tru
 
 
 -----------------------------------------------------
--- Neo-tree
+-- Neo-tree key:e
 ------------------------------------------------------
 local ok_tree, neotree = pcall(require, "neo-tree")
 if ok_tree then
@@ -86,7 +102,7 @@ end
 map("n", "<leader>gs", vim.cmd.Git)
 
 ------------------------------------------------------
--- Harpoon 2
+-- Harpoon 2 key: none
 ------------------------------------------------------
 local ok_harpoon, harpoon = pcall(require, "harpoon")
 if ok_harpoon then
@@ -112,14 +128,14 @@ if ok_harpoon then
 end
 
 ------------------------------------------------------
--- Telescope
+-- Telescope key :s
 ------------------------------------------------------
 local ok_telescope, builtin = pcall(require, "telescope.builtin")
 if ok_telescope then
-    map("n", "<leader>tf", builtin.find_files, {})
-    map("n", "<leader>tg", builtin.live_grep, {})
-    map("n", "<leader>tb", builtin.buffers, {})
-    map("n", "<leader>th", builtin.help_tags, {})
+    map("n", "<leader>sf", builtin.find_files, {})
+    map("n", "<leader>sg", builtin.live_grep, {})
+    map("n", "<leader>sb", builtin.buffers, {})
+    map("n", "<leader>sh", builtin.help_tags, {})
 
     map("n", "<leader>ts", function()
         builtin.grep_string({
@@ -143,7 +159,7 @@ local function comment_with_prompt()
     sign = sign .. " "
 
     local mode = vim.fn.mode()
-    if mode:match("[vV\22]") then -- Matches v, V, or Ctrl-v
+    if mode:match("[vV\22]") then 
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, false, true), 'x', false)
         vim.schedule(function()
             local b_start = vim.api.nvim_buf_get_mark(0, "<")
@@ -164,7 +180,7 @@ local function comment_with_prompt()
     end
 end
 
-vim.keymap.set({"n", "v"}, "<leader>rc", comment_with_prompt, { desc = "Comment with custom prompt" })
+map({"n", "v"}, "<leader>ra", comment_with_prompt, { desc = "Comment with custom prompt" })
 
 local function replace_word()
     local from = vim.fn.input("Replace: ")
@@ -173,10 +189,6 @@ local function replace_word()
 
     local search_pattern = "\\V" .. vim.fn.escape(from, "/\\")
     local replace_pattern = vim.fn.escape(to, "/\\&~")
-
-    -- 'g' = global (all occurrences in line)
-    -- 'I' = case sensitive (remove 'I' and add 'i' if you want case-insensitive)
-    -- 'c' = confirm
     local cmd = string.format("%%s/%s/%s/gIc", search_pattern, replace_pattern)
     local success, err = pcall(vim.cmd, cmd)
     if success then
@@ -189,3 +201,9 @@ local function replace_word()
 end
 
 vim.keymap.set("n", "<leader>rw", replace_word, { desc = "Search and Replace (Literal)" })
+
+------------------------------------------------------
+-- scratchpad
+------------------------------------------------------
+
+

@@ -1,6 +1,7 @@
 import Quickshell
 import QtQuick
 import "modules/bar"
+import "modules"
 
 ShellRoot {
     id: loader
@@ -14,5 +15,9 @@ ShellRoot {
         active:true
         sourceComponent: Bar{}
     }
+//     Loader {
+//         active:true
+//         sourceComponent: Test{}
+//     } 
 }
 

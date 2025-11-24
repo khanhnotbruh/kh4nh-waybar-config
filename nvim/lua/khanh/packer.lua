@@ -89,22 +89,21 @@ return require('packer').startup(function(use)
     use "lewis6991/hover.nvim"
 
     ---------------------------------------------------------------------------
-    -- Treesitter
+    --misc 
     ---------------------------------------------------------------------------
     use {
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate"
     }
-    use "nvim-treesitter/playground"
-    ---------------------------------------------------------------------------
-    --Scratch pad
-    ---------------------------------------------------------------------------
     use {
-        "athar-qadri/scratchpad.nvim",
-        requires = { "nvim-lua/plenary.nvim" },
+        "windwp/nvim-autopairs",
         config = function()
-            require("scratchpad"):setup()
-        end,
+            require('nvim-autopairs').setup({
+                map_enter = true,
+                enable_check_bracket_line = true,
+                check_ts = true,
+            })
+        end
     }
 end)
 

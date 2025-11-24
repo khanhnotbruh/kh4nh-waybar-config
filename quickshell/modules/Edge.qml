@@ -29,7 +29,7 @@ PanelWindow {
     Item {
         id: container
         anchors.fill: parent
-
+        z:0
         Canvas {
             id: frameCanvas
             anchors.fill: parent
