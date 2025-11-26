@@ -29,6 +29,7 @@ PanelWindow {
         Canvas {
             id: frameCanvas
             anchors.fill: parent
+            layer.enabled: true
             property color frameColor:Config.frameColor 
             property real thickness: Config.frameThick
             property real roundness: Config.frameRadius        

@@ -9,14 +9,14 @@ Rectangle {
     id: drawer
     property Component drawerButton
     property Component drawerContent
-    property int drawerAnimation: 150
-    property int drawerWidth: 100
+    property int drawerAnimation
     property int drawerHeight
     property int drawerMargins
-    property int buttonWidth: 40
-    property int contentWidth: 40
+    property int buttonWidth
+    property int contentWidth
+    property bool drawerLeft
+
     property bool hovered: drawerMouse.containsMouse
-    property bool drawerLeft: false
 
     anchors {
         top: parent.top
@@ -28,7 +28,7 @@ Rectangle {
 
     Behavior on width { NumberAnimation { duration: drawer.drawerAnimation; easing.type: Easing.OutQuad } }
 
-    width: drawer.hovered ? drawer.drawerWidth+3*drawer.drawerMargins : drawer.buttonWidth+2*drawer.drawerMargins
+    width: drawer.hovered ? drawer.buttonWidth+drawer.contentWidth+3*drawer.drawerMargins : drawer.buttonWidth+2*drawer.drawerMargins
     color:Config.backgroundColor 
     radius:Config.radiusAll
     z: 2 
@@ -48,26 +48,18 @@ Rectangle {
             bottom: parent.bottom
             left: drawer.drawerLeft ? undefined : parent.left
             right: drawer.drawerLeft ? parent.right : undefined
-            margins:2 
         }
 
-        width: drawer.hovered ? (drawer.drawerWidth - drawer.buttonWidth) : 0
-
-        color:"transparent" 
+        width: drawer.hovered ? (drawer.width - drawer.buttonWidth) : 0
+        color:Config.background2ColorChanged 
         radius: Config.radiusAll
-        clip: true 
+        clip:true
 
         Item {
             anchors.fill: parent
             Loader {
-                anchors {
-                    top: parent.top
-                    bottom: parent.bottom
-                    left: drawer.drawerLeft ? undefined : parent.left
-                    right: drawer.drawerLeft ? parent.right : undefined
-                }
-                visible:drawer.width>(drawer.contentWidth+drawer.buttonWidth)/3*2?1:0
-                Behavior on visible { NumberAnimation { duration: drawer.drawerAnimation; easing.type: Easing.OutQuad } }
+                anchors.centerIn: parent
+                x:drawer.hovered?0:-drawer.contentWidth
                 sourceComponent: drawer.drawerContent
             }
         }
@@ -82,11 +74,10 @@ Rectangle {
             bottom: parent.bottom
             right: drawer.drawerLeft ? undefined : parent.right
             left: drawer.drawerLeft ? parent.left : undefined
-            margins:2 
         }
 
-        width: drawer.buttonWidth
-        color: "transparent"
+        width: drawer.buttonWidth+2*drawer.drawerMargins
+        color: Config.background2ColorChanged
         radius: Config.radiusAll
 
         Loader {

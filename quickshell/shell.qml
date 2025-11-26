@@ -4,8 +4,9 @@ import "modules/bar"
 import "modules"
 
 ShellRoot {
-    id: loader
+    id:shell 
 
+    property bool enableBarHover:true
 
     Loader {
         active: true

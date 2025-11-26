@@ -1,12 +1,12 @@
-autologin.username="31f6qdw7xcko3fqasjsdolbxunz4"
-autologin.saved_credentials="{\"31f6qdw7xcko3fqasjsdolbxunz4\":[\"31f6qdw7xcko3fqasjsdolbxunz4\",\"bbKrCNakamhwygED/LlRm2nwntGjArGdZOeo+RR2XDcK67sVH/6bUBi6aDqkOYzDhjrzbYTdlQDZTtv2rBocIURHJrGWY41Z7WfgXXCEaR7km5qNi6HIYN6Zflyi3O5ORyeGGzwsTbAtwLTjj8liTjNJaUrWYESxTtEhDOkxAgC0WjD0r3og82Q3Qs/+FaIDR5i4HyeOWCkC1gz//TN4II6DlDssmRZhD65K/j3e2Kv88cOve1Dg6ORRgebGOP6e4vWlDKZwjt6Xs/bOxJg4BsIryhqWbfuArbz+8KB3//tISIt2hXwVphIXcjhXj3rS\"]}"
-autologin.canonical_username="31f6qdw7xcko3fqasjsdolbxunz4"
 autologin.blob="bbKrCNakamhwygED/LlRm2nwntGjArGdZOeo+RR2XDcK67sVH/6bUBi6aDqkOYzDhjrzbYTdlQDZTtv2rBocIURHJrGWY41Z7WfgXXCEaR7km5qNi6HIYN6Zflyi3O5ORyeGGzwsTbAtwLTjj8liTjNJaUrWYESxTtEhDOkxAgC0WjD0r3og82Q3Qs/+FaIDR5i4HyeOWCkC1gz//TN4II6DlDssmRZhD65K/j3e2Kv88cOve1Dg6ORRgebGOP6e4vWlDKZwjt6Xs/bOxJg4BsIryhqWbfuArbz+8KB3//tISIt2hXwVphIXcjhXj3rS"
+autologin.canonical_username="31f6qdw7xcko3fqasjsdolbxunz4"
+autologin.saved_credentials="{\"31f6qdw7xcko3fqasjsdolbxunz4\":[\"31f6qdw7xcko3fqasjsdolbxunz4\",\"bbKrCNakamhwygED/LlRm2nwntGjArGdZOeo+RR2XDcK67sVH/6bUBi6aDqkOYzDhjrzbYTdlQDZTtv2rBocIURHJrGWY41Z7WfgXXCEaR7km5qNi6HIYN6Zflyi3O5ORyeGGzwsTbAtwLTjj8liTjNJaUrWYESxTtEhDOkxAgC0WjD0r3og82Q3Qs/+FaIDR5i4HyeOWCkC1gz//TN4II6DlDssmRZhD65K/j3e2Kv88cOve1Dg6ORRgebGOP6e4vWlDKZwjt6Xs/bOxJg4BsIryhqWbfuArbz+8KB3//tISIt2hXwVphIXcjhXj3rS\"]}"
 app.window.state.saved=true
 app.window.position.width=1322
 es.send-on-startup=true
-core.clock_delta=0
+core.clock_delta=-1
 app.window.position.x=22
+autologin.username="31f6qdw7xcko3fqasjsdolbxunz4"
 app.window.position.saved=true
 app.window.position.height=724
 app.window.position.y=22

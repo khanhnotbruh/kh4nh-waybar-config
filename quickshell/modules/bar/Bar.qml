@@ -56,23 +56,16 @@ PanelWindow {
         Drawer {
             id: clockDrawer             
             z:8
-            drawerWidth:Config.clockDrawerWidth
             drawerHeight:Config.clockDrawerHeight
             drawerMargins:Config.clockDrawerMargins
             drawerLeft:Config.clockDrawerLeft
             drawerAnimation:Config.clockDrawerAnimation
             buttonWidth:Config.clockWidth
-            contentWidth:Config.clockWidth
+            contentWidth:Config.dateWidth
 
             drawerButton:Clock{
-            anchors.centerIn: parent}
+            }
             drawerContent:Date{
-                anchors{
-                    left :Config.clockDrawerLeft?parent.left:undefined
-                    right:Config.clockDrawerLeft?undefined:parent.right
-                    leftMargin:Config.clockDrawerLeft? 0:Config.clockDrawerMargins
-                    rightMargin:Config.clockDrawerLeft? Config.clockDrawerMargins:0
-                }
             }
         }
     }
