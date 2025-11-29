@@ -12,6 +12,10 @@ if cmp_ok then
 end
 
 local on_attach = function(client, bufnr)
+    if vim.bo[bufnr].filetype == "neo-tree" then
+        return
+    end
+    local ns = vim.api.nvim_create_namespace("lua_ls")
     vim.diagnostic.config({
         virtual_text = false,
         signs = true,
@@ -22,8 +26,10 @@ local on_attach = function(client, bufnr)
             border = "rounded",
             source = "always",
         },
-    }, bufnr)
+    }, ns)
 end
+
+
 
 -- Diagnostic Signs
 local signs = {
@@ -33,8 +39,7 @@ local signs = {
     Hint  = "",
 }
 for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    vim.fn.sign_define("DiagnosticSign" .. type, { text = icon, texthl = "", numhl = "" })
 end
 
 -- Servers list

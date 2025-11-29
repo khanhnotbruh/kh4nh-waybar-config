@@ -53,11 +53,8 @@
         },
         
         
-//       "brightness",
-//       "battery",
         "poweradapter",
         "bluetooth",
-//        "sound",
         "gamepad",
         {
             "type": "custom", // SoftwareStart
@@ -83,24 +80,15 @@
         "lm",
         "de",
         "wm",
-//        "shell",
-//        "terminal",
-//        "terminalfont",
- //       "packages",
         "uptime",
-//        "media",
         {
             "type": "localip",
             "compact": true
         },
 //        {
-//            "type": "publicip",
-//            "timeout": 1000
+//            "type": "wifi",
+//            "format": "{ssid}"
 //        },
-        {
-            "type": "wifi",
-            "format": "{ssid}"
-        },
         "locale",
         {
             "type": "custom", // InformationEnd

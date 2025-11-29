@@ -1,0 +1,10 @@
+q
+save
+sace
+set altformat_current= %f
+add ~/Downloads
+bind common <key> add
+help
+clear
+add
+add ~/Music

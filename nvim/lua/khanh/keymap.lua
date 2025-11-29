@@ -92,11 +92,9 @@ if ok_tree then
                 ["o"] = "toggle_node",
                 ["<cr>"]="open",
 
-
                 ["a"] = { "add", config = { show_path = "relative" } },
                 ["d"] = { "add_directory", config = { show_path = "relative" } },
 
-                -- Delete, rename
                 ["D"] = "delete",
                 ["r"] = "rename",
             },
@@ -145,24 +143,66 @@ if ok_telescope then
     map("n", "<leader>sg", builtin.live_grep, {})
     map("n", "<leader>sb", builtin.buffers, {})
     map("n", "<leader>sh", builtin.help_tags, {})
-
-    map("n", "<leader>ts", function()
-        builtin.grep_string({
-            search = vim.fn.input("Grep > "),
-        })
-    end)
 end
 
 ------------------------------------------------------
 -- Undo Tree
 ------------------------------------------------------
 map("n", "<leader>u", vim.cmd.UndotreeToggle)
+------------------------------------------------------
+-- comment,header && replace
+------------------------------------------------------
+function InsertHeader1()
+    local comment = vim.fn.input("Comment sign: ")
+    if comment == "" then
+        print("No comment sign provided!")
+        return
+    end
+
+    local content = vim.fn.input("Header content: ")
+    if content == "" then
+        print("No content provided!")
+        return
+    end
+    local line_len =75 
+    local padding = math.floor((line_len - #content - 2) / 2)
+    local content_line = comment .. string.rep(" ", padding) .. content .. string.rep(" ", line_len - #content - padding - #comment) .. comment
+    local row = vim.api.nvim_win_get_cursor(0)[1]
+    vim.api.nvim_buf_set_lines(0, row, row, false, {content_line})
+end
+
+function InsertHeader2()
+    -- Ask for comment sign
+    local comment = vim.fn.input("Comment sign: ")
+    if comment == "" then
+        print("No comment sign provided!")
+        return
+    end
+
+    -- Ask for header content
+    local content = vim.fn.input("Header content: ")
+    if content == "" then
+        print("No content provided!")
+        return
+    end
+
+    -- Determine line length
+    local line_len = 60
+    local border_line = comment:rep(1) .. string.rep("/", line_len - #comment)
+
+    -- Create centered content line
+    local padding = math.floor((line_len - #content - 2) / 2)
+    local content_line = comment .. string.rep(" ", padding) .. content .. string.rep(" ", line_len - #content - padding - #comment) .. comment
+
+    -- Insert into current buffer
+    local row = vim.api.nvim_win_get_cursor(0)[1]
+    vim.api.nvim_buf_set_lines(0, row, row, false, { border_line, content_line, border_line })
+end
+
+map("n","<leader>h2",InsertHeader2,{ noremap = true, silent = true })
+map("n","<leader>h1",InsertHeader1,{ noremap = true, silent = true })
 
 
-------------------------------------------------------
--- comment && replace
-------------------------------------------------------
--- Function to handle both commenting (with prompt) and uncommenting (on empty prompt)
 local function toggle_comment_with_prompt()
     local range = "."
     local mode = vim.fn.mode()
@@ -217,19 +257,15 @@ local function toggle_comment_with_prompt()
         end
     end
 end
-
--- Set the keymap
 vim.keymap.set({"n", "v"}, "<leader>ra", toggle_comment_with_prompt, { desc = "Toggle Comment/Uncomment with Prompt" })
 
-
--- Retaining your replace_word function
 local function replace_word()
     local from = vim.fn.input("Replace: ")
     if from == "" then return end
     local to = vim.fn.input("With: ")
 
     local search_pattern = "\\V" .. vim.fn.escape(from, "/\\")
-    local replace_pattern = vim.fn.escape(to, "/\\&~")
+    local replace_pattern= vim.fn.escape(to, "/\\&~")
     local cmd = string.format("%%s/%s/%s/gIc", search_pattern, replace_pattern)
     local success, err = pcall(vim.cmd, cmd)
     if success then
@@ -244,7 +280,8 @@ end
 vim.keymap.set("n", "<leader>rw", replace_word, { desc = "Search and Replace (Literal)" })
 
 ------------------------------------------------------
--- scratchpad
+-- twilight 
 ------------------------------------------------------
+map("n","<leader>f",":Twilight<CR>")
 
 
